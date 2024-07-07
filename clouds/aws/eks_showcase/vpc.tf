@@ -4,6 +4,7 @@ locals {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
+  # TODO version =
 
   name = local.vpc_name
   cidr = "10.11.0.0/16"
@@ -13,4 +14,12 @@ module "vpc" {
   public_subnets  = ["10.11.101.0/24", "10.11.102.0/24", "10.11.103.0/24"]
 
   enable_nat_gateway = true
+
+  public_subnet_tags = {
+    "kubernetes.io/role/elb" = 1
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/role/internal-elb" = 1
+  }
 }
