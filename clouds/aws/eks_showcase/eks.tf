@@ -30,34 +30,34 @@ module "eks" {
 
   enable_cluster_creator_admin_permissions = var.enable_cluster_creator_admin_permissions
 
-    eks_managed_node_groups = {
-      "${local.eks_cluster_name}-managed" = {
-        # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
-        ami_type       = "AL2023_x86_64_STANDARD"
-        instance_types = ["t3.small"]
+  eks_managed_node_groups = {
+    "${local.eks_cluster_name}-managed" = {
+      # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
+      ami_type       = "AL2023_x86_64_STANDARD"
+      instance_types = ["t3.small"]
 
-        min_size     = 1
-        max_size     = 2
-        desired_size = 1
-      }
+      min_size     = 1
+      max_size     = 2
+      desired_size = 1
     }
+  }
 
-#   fargate_profiles = [
-#     {
-#       name    = "${local.eks_cluster_name}-fargate"
-#       subnets = module.vpc.private_subnets
-#       selectors = [
-# #         {
-# #           namespace = "kube-system"
-# #         },
-#         {
-#           namespace = "default"
-#         },
-#       ]
-#       timeouts = {}
-#     },
-#
-#   ]
+  #   fargate_profiles = [
+  #     {
+  #       name    = "${local.eks_cluster_name}-fargate"
+  #       subnets = module.vpc.private_subnets
+  #       selectors = [
+  # #         {
+  # #           namespace = "kube-system"
+  # #         },
+  #         {
+  #           namespace = "default"
+  #         },
+  #       ]
+  #       timeouts = {}
+  #     },
+  #
+  #   ]
 
   cluster_enabled_log_types = [
     "audit",
