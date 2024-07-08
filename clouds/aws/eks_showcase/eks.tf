@@ -42,23 +42,6 @@ module "eks" {
     }
   }
 
-  #   fargate_profiles = [
-  #     {
-  #       name    = "${local.eks_cluster_name}-fargate"
-  #       subnets = module.vpc.private_subnets
-  #       selectors = [
-  # #         {
-  # #           namespace = "kube-system"
-  # #         },
-  #         {
-  #           namespace = "default"
-  #         },
-  #       ]
-  #       timeouts = {}
-  #     },
-  #
-  #   ]
-
   cluster_enabled_log_types = [
     "audit",
     "api",
@@ -77,7 +60,8 @@ module "eks" {
 
 
 module "load_balancer_controller" {
-  source = "git::https://github.com/DNXLabs/terraform-aws-eks-lb-controller.git"
+  source  = "DNXLabs/eks-lb-controller/aws"
+  version = "0.9.0"
 
   enabled = true
 
