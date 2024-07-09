@@ -4,10 +4,12 @@ kind: Ingress
 metadata:
   name: {{ include "hello-world.fullname" . }}-ingress
   namespace: {{ .Release.Namespace }}
+  {{- if .Values.ingress.annotations }}
   annotations:
     {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}
     {{- end }}
+  {{- end }}
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName | default "alb" }}
   rules:
