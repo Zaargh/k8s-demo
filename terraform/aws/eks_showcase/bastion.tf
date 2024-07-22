@@ -71,6 +71,7 @@ resource "aws_instance" "bastion" {
     Name = "${var.name_prefix}-bastion"
   }
 
+  depends_on = [module.access_from_bastion_sg]
   lifecycle {
     ignore_changes = [ami]
   }

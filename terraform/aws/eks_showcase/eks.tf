@@ -56,6 +56,8 @@ module "eks" {
     ]
   } : {}
   ######
+
+  depends_on = [module.vpc]
 }
 
 
