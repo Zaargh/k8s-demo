@@ -47,8 +47,7 @@ ingress:
   enabled: true
   ingressClassName: azure-application-gateway
   hosts:
-    - host: "demo"
-      paths:
+    - paths:
         - path: /
           pathType: Prefix
           backend:
